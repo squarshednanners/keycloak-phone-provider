@@ -1,4 +1,4 @@
-# Keycloak (Quarkus 19.0.1)  Phone Provider
+# Keycloak (Quarkus 20.0.5)  Phone Provider
 
  + Phone support like e-mail 
  + OTP by phone
@@ -34,7 +34,7 @@ see my project [KeycloakClient](https://github.com/cooper-lyt/KeycloakClient) ,i
 
 ## Compatibility
 
-This was initially developed using 19.0.1 version of Quarkus Keycloak as baseline,Wildfily keycloak is not support again, and I did not test another user storage beyond
+This was initially developed using 20.0.5 version of Quarkus Keycloak as baseline,Wildfily keycloak is not support again, and I did not test another user storage beyond
 the default like Kerberos or LDAP. I may try to help you but I cannot guarantee.
 
 ## Usage
