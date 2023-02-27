@@ -1,5 +1,5 @@
 
-FROM quay.io/keycloak/keycloak:19.0.1
+FROM quay.io/keycloak/keycloak:20.0.5
 
 
   # yuntongxin sdk
@@ -24,28 +24,31 @@ COPY providers/keycloak-phone-provider.jar /opt/keycloak/providers/
 COPY providers/keycloak-phone-provider.resources.jar /opt/keycloak/providers/
 
 #dummy provider
-COPY providers/keycloak-sms-provider-dummy.jar /opt/keycloak/providers/
+#COPY providers/keycloak-sms-provider-dummy.jar /opt/keycloak/providers/
 
 #yuntongxin provider
-COPY providers/keycloak-sms-provider-cloopen.jar /opt/keycloak/providers/
+#COPY providers/keycloak-sms-provider-cloopen.jar /opt/keycloak/providers/
 
 #totalvoice provider
-COPY providers/keycloak-sms-provider-totalvoice.jar /opt/keycloak/providers/
+#COPY providers/keycloak-sms-provider-totalvoice.jar /opt/keycloak/providers/
 
 #twilio provider
 COPY providers/keycloak-sms-provider-twilio.jar /opt/keycloak/providers/
 
 #yunxin provider
-COPY providers/keycloak-sms-provider-yunxin.jar /opt/keycloak/providers/
+#COPY providers/keycloak-sms-provider-yunxin.jar /opt/keycloak/providers/
 
 #tencent provider
-COPY providers/keycloak-sms-provider-tencent.jar /opt/keycloak/providers/
-#
+#COPY providers/keycloak-sms-provider-tencent.jar /opt/keycloak/providers/
+
 #aliyun provider
-COPY providers/keycloak-sms-provider-aliyun.jar /opt/keycloak/providers/
+#COPY providers/keycloak-sms-provider-aliyun.jar /opt/keycloak/providers/
 
 #aws provider
-COPY providers/keycloak-sms-provider-aws-sns.jar /opt/keycloak/providers/
+#COPY providers/keycloak-sms-provider-aws-sns.jar /opt/keycloak/providers/
+
+#pro wagering theme
+COPY providers/pro-wagering-theme.jar /opt/keycloak/providers/
 
 RUN /opt/keycloak/bin/kc.sh build
 

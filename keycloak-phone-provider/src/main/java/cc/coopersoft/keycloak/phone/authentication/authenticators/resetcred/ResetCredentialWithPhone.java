@@ -1,10 +1,20 @@
 package cc.coopersoft.keycloak.phone.authentication.authenticators.resetcred;
 
-import cc.coopersoft.keycloak.phone.authentication.forms.SupportPhonePages;
-import cc.coopersoft.common.OptionalStringUtils;
-import cc.coopersoft.keycloak.phone.Utils;
-import cc.coopersoft.keycloak.phone.providers.constants.TokenCodeType;
-import cc.coopersoft.keycloak.phone.providers.spi.PhoneVerificationCodeProvider;
+import static cc.coopersoft.keycloak.phone.authentication.forms.SupportPhonePages.ATTEMPTED_PHONE_ACTIVATED;
+import static cc.coopersoft.keycloak.phone.authentication.forms.SupportPhonePages.ATTEMPTED_PHONE_NUMBER;
+import static cc.coopersoft.keycloak.phone.authentication.forms.SupportPhonePages.ATTRIBUTE_SUPPORT_PHONE;
+import static cc.coopersoft.keycloak.phone.authentication.forms.SupportPhonePages.FIELD_PATH_PHONE_ACTIVATED;
+import static cc.coopersoft.keycloak.phone.authentication.forms.SupportPhonePages.FIELD_PHONE_NUMBER;
+import static cc.coopersoft.keycloak.phone.authentication.forms.SupportPhonePages.FIELD_VERIFICATION_CODE;
+import static cc.coopersoft.keycloak.phone.authentication.forms.SupportPhonePages.MESSAGE_PHONE_USER_NOT_FOUND;
+import static cc.coopersoft.keycloak.phone.authentication.forms.SupportPhonePages.MESSAGE_VERIFICATION_CODE_NOT_MATCH;
+import static org.keycloak.authentication.authenticators.util.AuthenticatorUtils.getDisabledByBruteForceEventError;
+
+import java.util.List;
+
+import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
+
 import org.apache.commons.lang.StringUtils;
 import org.jboss.logging.Logger;
 import org.keycloak.Config;
@@ -12,25 +22,27 @@ import org.keycloak.authentication.AuthenticationFlowContext;
 import org.keycloak.authentication.AuthenticationFlowError;
 import org.keycloak.authentication.Authenticator;
 import org.keycloak.authentication.AuthenticatorFactory;
-import org.keycloak.authentication.actiontoken.DefaultActionTokenKey;
 import org.keycloak.authentication.authenticators.broker.AbstractIdpAuthenticator;
 import org.keycloak.authentication.authenticators.browser.AbstractUsernameFormAuthenticator;
 import org.keycloak.events.Details;
 import org.keycloak.events.Errors;
-import org.keycloak.models.*;
+import org.keycloak.models.AuthenticationExecutionModel;
+import org.keycloak.models.DefaultActionTokenKey;
+import org.keycloak.models.KeycloakSession;
+import org.keycloak.models.KeycloakSessionFactory;
+import org.keycloak.models.RealmModel;
+import org.keycloak.models.UserModel;
 import org.keycloak.models.utils.FormMessage;
 import org.keycloak.provider.ProviderConfigProperty;
 import org.keycloak.services.managers.AuthenticationManager;
 import org.keycloak.services.messages.Messages;
 import org.keycloak.services.validation.Validation;
 
-import javax.ws.rs.core.MultivaluedMap;
-import javax.ws.rs.core.Response;
-
-import java.util.List;
-
-import static cc.coopersoft.keycloak.phone.authentication.forms.SupportPhonePages.*;
-import static org.keycloak.authentication.authenticators.util.AuthenticatorUtils.getDisabledByBruteForceEventError;
+import cc.coopersoft.common.OptionalStringUtils;
+import cc.coopersoft.keycloak.phone.Utils;
+import cc.coopersoft.keycloak.phone.authentication.forms.SupportPhonePages;
+import cc.coopersoft.keycloak.phone.providers.constants.TokenCodeType;
+import cc.coopersoft.keycloak.phone.providers.spi.PhoneVerificationCodeProvider;
 
 public class ResetCredentialWithPhone implements Authenticator, AuthenticatorFactory {
 

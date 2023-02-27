@@ -1,0 +1,60 @@
+.login-pf body {
+    background: url("../img/pro-waggering-background-5.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+div.kc-logo-text {
+    background-image: url("../img/ProWagering-Logo-white-231x100.png");
+    background-repeat: no-repeat;
+    height: 100px;
+    width: 231px;
+    margin: 0 auto;
+}
+
+.pf-c-button.pf-m-primary {
+    background-color: #ebac00;
+}
+
+.pf-c-button.pf-m-primary:hover {
+    background-color: #B08100
+}
+
+.pf-c-button.pf-m-primary:focus {
+    background-color: #B08100
+}
+
+.pf-c-form-control:hover {
+    border-bottom-color: #ebac00;
+}
+
+.pf-c-form-control:focus {
+    border-bottom-color: #ebac00;
+}
+
+.card-pf {
+    border-color: #ebac00;
+}
+
+.nav-pills>li.active>a,
+.nav-pills>li.active>a:focus,
+.nav-pills>li.active>a:hover {
+    background-color: #ebac00;
+}
+
+a {
+    color: #00403a;
+}
+
+.login-pf a:hover {
+    color: #b08100;
+}
+
+.login-pf a:focus {
+    color: #b08100;
+}
+
+input:focus {
+    outline: 0;
+    /* some people use shadows too */
+    box-shadow: none;
+}

@@ -13,8 +13,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <version.keycloak>19.0.1</version.keycloak>
-        <docker.image.name>coopersoft/keycloak</docker.image.name>
+        <version.keycloak>20.0.5</version.keycloak>
+        <docker.image.name>bradprowagering/keycloak</docker.image.name>
 
         <version.project.parent>2.1.2</version.project.parent>
     </properties>
@@ -30,7 +30,7 @@
         <module>keycloak-sms-provider-yunxin</module>
         <module>keycloak-sms-provider-aliyun</module>
         <module>keycloak-sms-provider-tencent</module>
-
+		<module>pro-wagering-theme</module>
     </modules>
 
     <dependencies>
